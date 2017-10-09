@@ -12,6 +12,10 @@ public class player_control : MonoBehaviour {
 	public Vector2 jumpHeight;
 	private Dictionary <string, int> directions = new Dictionary<string,int> ();
 	private bool canJump = true;
+	public GameObject _star;
+	private float nextFire;
+	public Transform shotSpawn;
+	public float fireRate;
 
 
 	// Use this for initialization
@@ -34,7 +38,16 @@ public class player_control : MonoBehaviour {
 			playeratk ();
 		}else if (Input.GetButton ("Jump") && canJump) {
 			playerjump ();
+		}else if (Input.GetButton("Fire2") && Time.time > nextFire)
+		{
+			playercaststar ();
 		}
+	}
+
+	void playercaststar(){
+		_animator.SetTrigger ("playerCaststar");
+		nextFire = Time.time + fireRate;
+		Instantiate(_star, shotSpawn.position, shotSpawn.rotation);
 	}
 
 	void playerjump(){
