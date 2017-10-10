@@ -55,6 +55,7 @@ public class player_control : MonoBehaviour {
 			playercaststar ();
 		}else if (Input.GetKey (KeyCode.R)){
 			gameObject.transform.position = _herospawn.transform.position;
+			updatescore (-5);
 		}
 
 
@@ -70,15 +71,22 @@ public class player_control : MonoBehaviour {
 
 		if (col.gameObject.tag == "coin"){
 			_pickupsound.Play ();
-			_score = _score + 10;
-			_scoretext.text = "Score: " + _score.ToString();
+			updatescore (10);
 			col.gameObject.SetActive(false);
-			Invoke("CreateCoin", _coinspawntime);
+			//Invoke("CreateCoin", _coinspawntime);
+			CreateCoin();
 		}
+	}
+
+	void updatescore(int scoreaddition){
+		_score = _score + scoreaddition;
+		_scoretext.text = "Score: " + _score.ToString();
 	}
 		
 	void CreateCoin(){
-		Instantiate (_newcoin,_coinspawn.position * Random.Range(1,10),_coinspawn.rotation);
+		Vector2 pos = new Vector2 (Random.Range (-13, 10), Random.Range (-5, 6));
+
+		Instantiate (_newcoin,pos,_coinspawn.rotation);
 	}
 
 	void playercaststar(){
