@@ -55,11 +55,9 @@ public class player_control : MonoBehaviour {
 			playercaststar ();
 		}else if (Input.GetKey (KeyCode.R)){
 			gameObject.transform.position = _herospawn.transform.position;
-			updatescore (-5);
+			updatescore (-3);
 		}
-
-
-
+			
 	}
 
 	//SPAWN E KAOZ JUST NU SKA IN I EGEN SNIPPET TAR MAN NY INNAN SPAWNTID KLAR STACKAS MED SAMMA POS
@@ -85,7 +83,6 @@ public class player_control : MonoBehaviour {
 		
 	void CreateCoin(){
 		Vector2 pos = new Vector2 (Random.Range (-13, 10), Random.Range (-5, 6));
-
 		Instantiate (_newcoin,pos,_coinspawn.rotation);
 	}
 
